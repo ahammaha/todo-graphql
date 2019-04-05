@@ -28,7 +28,7 @@ npm start
 
 Sample queries
 ==============
-* List tasks(query from flask endpoint)
+List tasks(query from flask endpoint)
 =============
 query{
  tasks{
@@ -40,7 +40,7 @@ query{
 } 
 }
 
-* Insert task(mutation from hasura)
+Insert task(mutation from hasura)
 ===================================
 mutation{
   insert_task(objects:{id: $id, title: $title, description: $description, status:"incomplete", created_by: $createdBy}) {
