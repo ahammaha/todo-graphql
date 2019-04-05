@@ -24,3 +24,32 @@ flask run --host="0.0.0.0"
 To start react
 ==============
 npm start
+
+
+Sample queries
+==============
+* List tasks(query from flask endpoint)
+=============
+query{
+ tasks{
+  id
+  title
+  description
+  createdBy
+  status
+} 
+}
+
+* Insert task(mutation from hasura)
+===================================
+mutation{
+  insert_task(objects:{id: $id, title: $title, description: $description, status:"incomplete", created_by: $createdBy}) {
+    returning{
+      id
+      title
+      description
+      status
+      created_by
+    }
+  }
+}
