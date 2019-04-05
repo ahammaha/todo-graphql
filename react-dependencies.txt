@@ -1,0 +1,2 @@
+npm i graphql-tag
+npm i apollo-boost react-apollo graphql

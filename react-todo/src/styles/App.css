@@ -1,0 +1,54 @@
+#app {
+    max-width: 100%;
+    width: 900px;
+    margin: 2em auto;
+    background: white;
+    padding: 1em;
+}
+
+input, button {
+    padding: 0.5em;
+    margin: 2px;
+    display: inline-block;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.19);
+}
+input, button, div#app {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+input {
+    border: 2px solid #16a085;
+}
+
+button {
+    background: #16a085;
+    color: #fff;
+    border: none;
+    padding: 0.7em;
+}
+
+button:last-of-type {
+    margin-right: 0;
+}
+
+.deleteTask{
+    padding: 0.2em;
+    background: #bd2020;
+}
+
+th, td {
+    padding: 10px 0;
+}
+
+table{
+    margin-top:50px;
+    min-width:20%;
+    border:1px solid #f1f1f1;
+}
+
+button {
+    cursor: pointer;
+}
+
+.delete-btn, .cancel-btn {
+    background-color: #e74c3c;
+}

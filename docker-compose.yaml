@@ -1,0 +1,28 @@
+version: '3.6'
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgresUsr
+      - POSTGRES_PASSWORD=postgresPwd
+      - POSTGRES_DB=todo_db
+    ports:
+    - "5432:5432"
+    volumes:
+    - todo_db_data:/var/lib/postgresql/data
+  graphql-engine:
+    image: hasura/graphql-engine:v1.0.0-alpha41
+    ports:
+    - "8080:8080"
+    depends_on:
+    - "postgres"
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgresql://postgresUsr:postgresPwd@postgres/todo_db
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      ## uncomment next line to set an admin secret
+      HASURA_GRAPHQL_ADMIN_SECRET: maha
+      HASURA_GRAPHQL_JWT_SECRET: '{"type": "RS512", "key": "-----BEGIN CERTIFICATE-----\nMIIDBzCCAe+gAwIBAgIJC2Ka4RtSwJMJMA0GCSqGSIb3DQEBCwUAMCExHzAdBgNV\nBAMTFmRldi03dTMtcXJzai5hdXRoMC5jb20wHhcNMTkwNDA0MDQzMzA1WhcNMzIx\nMjExMDQzMzA1WjAhMR8wHQYDVQQDExZkZXYtN3UzLXFyc2ouYXV0aDAuY29tMIIB\nIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArEzbKNwpOMg5u9IHKbnIyAsn\niGY43cz1VycVuSYmcQn5En8m1nGlyiRYUOtBXrsL8L0B2j5lj7JzBdbzEZl17xcB\n6gafgpKO8rYKlE1rbCjFW6C0HCyKsGfZfUFMgwFx9+oUCBawLAwUzrsEJPVe91to\nlFIpg+sWInE7DLUhhr7RyZZZFpU8oALxWfWnZuU9pPo5UhJ8oxNOdqbs32K8F25t\nw4WxwjYyrE1YjqNsk32EA8hdkcgRLdvWV0ca0q6uubMleakMyhDFJnBedlHIpVNd\n/O0h+W566RpKmyOpgM+AyTr8ZwRN0doFoEmAGGGwaye343QOBKZc+Z7OHMi+iQID\nAQABo0IwQDAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBQXXsZ4GCkfWoCRLm6P\ngXk5XHrcvTAOBgNVHQ8BAf8EBAMCAoQwDQYJKoZIhvcNAQELBQADggEBAE2xae13\n3gXUMd09dNMogD+C91zFWVupyouwGEgXIsP4EUWJ3DF7jA6f8XuBuaO3JhXGq7KI\nCQB9luFDUzr5iawAQ47DD/NNvGCckvULpSHB3lNN5oLiw8esDTl8GiemzKLil1Un\nM+1Z+tv4zSrXDFu8ZHQM9Hm+74EgkYymetj83/6jy+7PPoMfTRKXcTZNjY3CHbpV\naAUKySD6vM1K+jFz1bEOSzI8ZNrP9UwPoPJSuMX0OUvHcpQgQwZ7dMfrTBGpndDn\nJi87kI/d3NxvnceN+6XgrlXh0DLLEY4MGNgeAQM7d8ATMQ4QRGzgg9bYDAp9+YBG\nDT09U289htrk96o=\n-----END CERTIFICATE-----\n"}' 
+volumes:
+  todo_db_data:
